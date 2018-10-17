@@ -9,7 +9,7 @@
    - Percentage: Is the Percentage how often the newest game should be displayed
    - Game ID: is the id from the JSON from the actual game so it get not displayed in the own game
 
-### Use Callback (Wait for finish)
+### Use Callback
 
 This package use the Unity start function, but you can change it to get the finished callback.
 
@@ -23,167 +23,147 @@ This package use the Unity start function, but you can change it to get the fini
    }
    ```
 
-3. Call the `LoadCrossPromotion()` Coroutine in you script
+3. Call the `LoadCrossPromotion()` Coroutine in your script
 
-   - Load the `Canvas_CrossPromotion_*` Object in your script (e.g. `GameObject.Find("Canvas_CrossPromotion_*")`)
+   - Load the `Canvas_CrossPromotion_*` Object in your script (e.g. `GameObject.Find ("Canvas_CrossPromotion_*")`)
 
-4. Wait for `CrossPromotion_Finished` to get `true`
+4. Wait for bool `CrossPromotion_Finished` to get `true`
 
 ## JSON
 
-You can create your JSON file from the example.
+You can create your JSON file from the [example](/example_json).
 
 ### Attributes
 
+- id: the id of the game
 - name: The name of the game
-- image: the url for the game image
 - playStoreID: the id to link to the play store
 - appStoreID: the id to link to the app store
-- hexColor: here you can add a color for the frame
 - price: here you can add a text with the price like “FREE” or “3.99$”
-- id: the id of the game to ignore this in own game
+- images: an array for all your images of the game
+  - url: the url where you image is
+  - frameColor: ere you can add a color for the frame in hex format
 
 ### Add a new Game
 
-1. Copy the `newGame` element from your JSON
-
-   ```JSON
-   "newGame": {
-       "name": "Example 3",
-       "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-       "playStoreID": "de.redcrown.example3",
-       "appStoreID": "3",
-       "hexColor": "FDFDFDFF",
-       "price": "NEW",
-       "id": "2"
-   }
-   ```
-
-2. Paste it under the newGame element
+1. Copy the last game from the array like this:
 
    ```JSON
    {
-    "newGame": {
-        "name": "Example 3",
-        "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-        "playStoreID": "de.redcrown.example3",
-        "appStoreID": "3",
-        "hexColor": "FDFDFDFF",
-        "price": "NEW",
-        "id": "2"
-    },
-    "newGame": {
-        "name": "Example 3",
-        "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-        "playStoreID": "de.redcrown.example3",
-        "appStoreID": "3",
-        "hexColor": "FDFDFDFF",
-        "price": "NEW",
-        "id": "2"
-    },
-    "game1": {
-        "name": "Example 2",
-        "image": "https://drive.google.com/uc?export=download&id=17yujfPsHdt38HpwWQ8LVoOqqjtPa5Ay7",
-        "playStoreID": "de.redcrown.example2",
-        "appStoreID": "2",
-        "hexColor": "E2E7ECFF",
-        "price": "FREE",
-        "id": "1"
-    },
-    "game0": {
-        "name": "Example 1",
-        "image": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
-        "playStoreID": "com.rc.example1",
-        "appStoreID": "1",
-        "hexColor": "333333FF",
-        "price": "FREE",
-        "id": "0"
+      "id": 2,
+      "name": "Example 2",
+      "playStoreID": "de.redcrown.example2",
+      "appStoreID": "2222",
+      "price": "FREE",
+      "images": [
+        {
+          "url": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
+          "frameColor": "#5841f4"
+        }
+      ]
     }
-   }
    ```
 
-3. change the key to “game” + next number
+2. Paste it to the end of the array like this:
 
    ```JSON
    {
-    "newGame": {
-        "name": "Example 3",
-        "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-        "playStoreID": "de.redcrown.example3",
-        "appStoreID": "3",
-        "hexColor": "FDFDFDFF",
-        "price": "NEW",
-        "id": "2"
-    },
-    "game2": {
-        "name": "Example 3",
-        "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-        "playStoreID": "de.redcrown.example3",
-        "appStoreID": "3",
-        "hexColor": "FDFDFDFF",
-        "price": "NEW",
-        "id": "2"
-    },
-    "game1": {
-        "name": "Example 2",
-        "image": "https://drive.google.com/uc?export=download&id=17yujfPsHdt38HpwWQ8LVoOqqjtPa5Ay7",
-        "playStoreID": "de.redcrown.example2",
-        "appStoreID": "2",
-        "hexColor": "E2E7ECFF",
-        "price": "FREE",
-        "id": "1"
-    },
-    "game0": {
-        "name": "Example 1",
-        "image": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
-        "playStoreID": "com.rc.example1",
-        "appStoreID": "1",
-        "hexColor": "333333FF",
-        "price": "FREE",
-        "id": "0"
+    "games": [
+        {
+            "id": 1,
+            "name": "Example 1",
+            "playStoreID": "de.redcrown.example1",
+            "appStoreID": "1111",
+            "price": "FREE",
+            "images": [
+                {
+                    "url": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
+                    "frameColor": "#f44242"
+                },
+                {
+                    "url": "https://drive.google.com/uc?export=download&id=17yujfPsHdt38HpwWQ8LVoOqqjtPa5Ay7",
+                    "frameColor": "#41f456"
+                }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Example 2",
+                "playStoreID": "de.redcrown.example2",
+                "appStoreID": "2222",
+                "price": "FREE",
+                "images": [
+                    {
+                        "url": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
+                        "frameColor": "#5841f4"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Example 2",
+                "playStoreID": "de.redcrown.example2",
+                "appStoreID": "2222",
+                "price": "FREE",
+                "images": [
+                    {
+                        "url": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
+                        "frameColor": "#5841f4"
+                    }
+                ]
+            }
+        ]
     }
-   }
    ```
 
-4. Update the variables for the new game and the price from the old game from “NEW” to something like “FREE”
+3. Update the variables for the new game like this:
 
    ```JSON
    {
-    "newGame": {
-        "name": "Example 4",
-        "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-        "playStoreID": "de.redcrown.example4",
-        "appStoreID": "4",
-        "hexColor": "3D3D3D",
-        "price": "NEW",
-        "id": "3"
-    },
-    "game2": {
-        "name": "Example 3",
-        "image": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
-        "playStoreID": "de.redcrown.example3",
-        "appStoreID": "3",
-        "hexColor": "FDFDFDFF",
-        "price": "FREE",
-        "id": "2"
-    },
-    "game1": {
-        "name": "Example 2",
-        "image": "https://drive.google.com/uc?export=download&id=17yujfPsHdt38HpwWQ8LVoOqqjtPa5Ay7",
-        "playStoreID": "de.redcrown.example2",
-        "appStoreID": "2",
-        "hexColor": "E2E7ECFF",
-        "price": "FREE",
-        "id": "1"
-    },
-    "game0": {
-        "name": "Example 1",
-        "image": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
-        "playStoreID": "com.rc.example1",
-        "appStoreID": "1",
-        "hexColor": "333333FF",
-        "price": "FREE",
-        "id": "0"
+    "games": [
+        {
+            "id": 1,
+            "name": "Example 1",
+            "playStoreID": "de.redcrown.example1",
+            "appStoreID": "1111",
+            "price": "FREE",
+            "images": [
+                {
+                    "url": "https://drive.google.com/uc?export=download&id=1mgOfUdIOI_v1z21WQegjWFgJpJeq5eer",
+                    "frameColor": "#f44242"
+                },
+                {
+                    "url": "https://drive.google.com/uc?export=download&id=17yujfPsHdt38HpwWQ8LVoOqqjtPa5Ay7",
+                    "frameColor": "#41f456"
+                }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Example 2",
+                "playStoreID": "de.redcrown.example2",
+                "appStoreID": "2222",
+                "price": "FREE",
+                "images": [
+                    {
+                        "url": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
+                        "frameColor": "#5841f4"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Example 3",
+                "playStoreID": "de.redcrown.example3",
+                "appStoreID": "3333",
+                "price": "3.99$",
+                "images": [
+                    {
+                        "url": "https://drive.google.com/uc?export=download&id=1DtkbFlyNk0gx-CKHnP_6c-TLYk1RssOb",
+                        "frameColor": "#5841f4"
+                    }
+                ]
+            }
+        ]
     }
-   }
    ```
